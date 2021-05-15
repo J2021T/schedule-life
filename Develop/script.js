@@ -14,8 +14,6 @@ var fifteen = $('#15');
 var sixteen = $('#16');
 var seventeen = $('#17');
 
-var curHr = moment().hours();
-
 // display day, date, and time at top of page
 var timeRespone = setInterval(function() {
     var now = moment().format('h:mm:ss a');
@@ -25,12 +23,14 @@ var timeRespone = setInterval(function() {
 // background colors match past = gray, present = red, or future = green
 function backgroundColor() {
     $('.form-control').each(function () {
-        if (parseInt(currentHour) = parseInt($('.form-control').attr('id'))) {
-            $('.form-control').addClass('present');
-        } else if (parseInt(currentHour) > parseInt$('.form-control').attr('id')) {
-            $('.form-control').addClass('past');
+        var formHour = parseInt($(this).attr('id'));
+        var curHr = parseInt(currentHour);
+        if (curHr < formHour) {
+            $(this).addClass('future');
+        } else if (curHr > formHour) {
+            $(this).addClass('past');
         } else {
-            $('.form-control').addClass('future');
+            $(this).addClass('present');
         }
     });
 }
@@ -45,23 +45,30 @@ function getData() {
     ten.text(data10);
     var data11 = JSON.parse(localStorage.getItem('11:00 am'))
     eleven.text(data11);
-    var data12 = JSON.parse(localStorage.getItem('12:00 am'))
+    var data12 = JSON.parse(localStorage.getItem('12:00 pm'))
     twelve.text(data12);
-    var data13 = JSON.parse(localStorage.getItem('01:00 pm'))
+    var data13 = JSON.parse(localStorage.getItem('1:00 pm'))
     thirteen.text(data13);
-    var data14 = JSON.parse(localStorage.getItem('02:00 pm'))
+    var data14 = JSON.parse(localStorage.getItem('2:00 pm'))
     fourteen.text(data14);
-    var data15 = JSON.parse(localStorage.getItem('03:00 pm'))
+    var data15 = JSON.parse(localStorage.getItem('3:00 pm'))
     fifteen.text(data15);
-    var data16 = JSON.parse(localStorage.getItem('04:00 pm'))
+    var data16 = JSON.parse(localStorage.getItem('4:00 pm'))
     sixteen.text(data16);
-    var data17 = JSON.parse(localStorage.getItem('05:00 pm'))
+    var data17 = JSON.parse(localStorage.getItem('5:00 pm'))
     seventeen.text(data17);
 };
 
-// save user input
+// save user input by clicking save button
 $('.saveBtn').on('click', function() {
-    var userInput = $('.form-control').val().trim();
+    var userInput = $(this).siblings('.form-control').val().trim();
+    var timeSlot = $(this).siblings('.input-group-text').text().trim();
+    localStorage.setItem(timeSlot, JSON.stringify(userInput));
+});
+
+// save user input by clicking anywhere else on page
+$('.form-control').blur(function() {
+    var userInput = $(this).val().trim();
     var timeSlot = $(this).siblings('.input-group-text').text().trim();
     localStorage.setItem(timeSlot, JSON.stringify(userInput));
 });
