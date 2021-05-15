@@ -1,6 +1,6 @@
 // current time variables
 var todaysDate = moment().format('dddd') + ' -- ' + moment().format('MMM Do, YYYY');
-var currentTime = moment().format('h:mm:ss a');
+var currentHour = moment().hours();
 
 // variables for each time slot
 var eight = $('#8');
@@ -21,6 +21,19 @@ var timeRespone = setInterval(function() {
     var now = moment().format('h:mm:ss a');
     $('#currentDay').html( todaysDate + " -- " + now);
 }, 1000);
+
+// background colors match past = gray, present = red, or future = green
+function backgroundColor() {
+    $('.form-control').each(function () {
+        if (parseInt(currentHour) = parseInt($('.form-control').attr('id'))) {
+            $('.form-control').addClass('present');
+        } else if (parseInt(currentHour) > parseInt$('.form-control').attr('id')) {
+            $('.form-control').addClass('past');
+        } else {
+            $('.form-control').addClass('future');
+        }
+    });
+}
 
 // get saved data from localStorage
 function getData() {
@@ -55,3 +68,4 @@ $('.saveBtn').on('click', function() {
 
 // start page
 getData();
+backgroundColor();
