@@ -19,6 +19,6 @@ var curHr = moment().hours();
 // save user input
 $('.saveBtn').on('click', function() {
     var userInput = $('.form-control').val().trim();
-    var time = $('.input-group-text').text().trim();
-    localStorage.setItem(time, JSON.stringify(userInput));
+    var timeSlot = $(this).siblings('.input-group-text').text().trim();
+    localStorage.setItem(timeSlot, JSON.stringify(userInput));
 })
