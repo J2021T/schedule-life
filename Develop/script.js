@@ -1,5 +1,5 @@
 // current time variables
-var todaysDate = moment().format('dddd') + ',' + moment().format('MMM Do, YYYY');
+var todaysDate = moment().format('dddd') + ' -- ' + moment().format('MMM Do, YYYY');
 var currentTime = moment().format('h:mm:ss a');
 
 // variables for each time slot
@@ -15,6 +15,12 @@ var sixteen = $('#16');
 var seventeen = $('#17');
 
 var curHr = moment().hours();
+
+// display day, date, and time at top of page
+var timeRespone = setInterval(function() {
+    var now = moment().format('h:mm:ss a');
+    $('#currentDay').html( todaysDate + " -- " + now);
+}, 1000);
 
 // save user input
 $('.saveBtn').on('click', function() {
