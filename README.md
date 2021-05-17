@@ -10,4 +10,4 @@
 - https://j2021t.github.io/schedule-life/
 
 ## Screenshot of Page
-![alt text](Assets\deployed-screenshot.png "Deployed Page Screenshot")
+![alt text](Assets/deployed-screenshot.png "Deployed Page Screenshot")
